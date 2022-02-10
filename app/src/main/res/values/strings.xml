@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Project_UAS</string>
+
+    <string name="Login_account">Login to your Account</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="Sign_up">Sign up</string>
+    <string name="Sign_in">Sign in</string>
+    <string name="Or_Sign_in_with">- Or Sign in with -</string>
+    <string name="Dont_have_account">Don`t have account?</string>
+    <string name="Create_your_account">Create your Account</string>
+    <string name="Confirm_Password">Confirm Password</string>
+    <string name="Or_Sign_up_with">- Or Sign up with -</string>
+    <string name="Already_have_an_account">Already have an account?</string>
+    <string name="Toko">Toko</string>
+    <string name="Toko_dapur">Toko Dapur</string>
+    <string name="Toko_mebel">Toko Mebel</string>
+    <string name="Toko_elektronik">Toko Elektronik</string>
+    <string name="Logout">Logout</string>
+    <string name="Check_for_details">Check For Details >></string>
+    <string name="Check_for_event">Check For Event</string>
+    <string name="Home">Home</string>
+    <string name="Spatula">Spatula</string>
+    <string name="Set_makan">Set Makan</string>
+    <string name="Wajan">Wajan</string>
+    <string name="Lemari">Lemari</string>
+    <string name="Tempat_tidur">Tempat Tidur</string>
+    <string name="Meja">Meja</string>
+    <string name="Televisi">Televisi</string>
+    <string name="Blender">Blender</string>
+    <string name="Mesin_cuci">Mesin Cuci</string>
+    <string name="Cart">Cart</string>
+    <string name="Bayar">Bayar</string>
+    <string name="Rp.">Rp.</string>
+    <string name="Navigation_Drawer_Open">Open nav</string>
+    <string name="Navigation_Drawer_Close">close nav</string>
+    <string name="INSTANCE_FIREBASE">https://project-uas-b188b-default-rtdb.asia-southeast1.firebasedatabase.app/</string>
+</resources>

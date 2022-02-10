@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapsActivity">
+
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_back" />
+
+    <TextView
+        android:id="@+id/maps_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="80dp"
+        android:layout_toRightOf="@id/img_back"
+        android:gravity="center"
+        android:text="@string/Toko_dapur"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_maps"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/maps_name"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rectangle_border_blue3">
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </RelativeLayout>
+
+</RelativeLayout>

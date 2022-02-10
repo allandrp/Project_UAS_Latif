@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:title="@string/Home">
+
+            <menu>
+
+                <item
+                    android:id="@+id/Menu_home"
+                    android:title="@string/Home"
+                    android:icon="@drawable/ic_home"/>
+
+            </menu>
+
+        </item>
+
+    </group>
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:title="@string/Toko">
+
+            <menu>
+
+                <item
+                    android:id="@+id/Menu_toko_dapur"
+                    android:title="@string/Toko_dapur"
+                    android:icon="@drawable/ic_kitchen"/>
+
+                <item
+                    android:id="@+id/Menu_toko_mebel"
+                    android:title="@string/Toko_mebel"
+                    android:icon="@drawable/ic_mebel"/>
+
+                <item
+                    android:id="@+id/Menu_toko_elektronik"
+                    android:title="@string/Toko_elektronik"
+                    android:icon="@drawable/ic_elektronik"/>
+            </menu>
+
+        </item>
+
+    </group>
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:title="@string/Logout">
+
+            <menu>
+
+                    <item
+                        android:id="@+id/Menu_logout"
+                        android:title="@string/Logout"
+                        android:icon="@drawable/ic_logout"/>
+
+            </menu>
+
+        </item>
+
+    </group>
+
+</menu>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:background="@color/blue">
+
+        <RelativeLayout
+            android:id="@+id/layout_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/round_white_background">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:id="@+id/image_email"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_logo" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/text_email"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="40dp"
+            android:layout_toRightOf="@id/layout_img"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/Email"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
