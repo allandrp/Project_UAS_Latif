@@ -32,6 +32,9 @@
     <string name="Cart">Cart</string>
     <string name="Bayar">Bayar</string>
     <string name="Rp.">Rp.</string>
+    <string name="Event">Event</string>
+    <string name="Dimulai_pada">Dimulai pada</string>
+    <string name="Add_to_calender">Add to calender</string>
     <string name="Navigation_Drawer_Open">Open nav</string>
     <string name="Navigation_Drawer_Close">close nav</string>
     <string name="INSTANCE_FIREBASE">https://project-uas-b188b-default-rtdb.asia-southeast1.firebasedatabase.app/</string>

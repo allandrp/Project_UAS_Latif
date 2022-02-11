@@ -70,7 +70,8 @@
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@+id/img_item_dapur"
                 android:text="Add To Chart"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:backgroundTint="@color/blue"/>
 
         </RelativeLayout>
 
