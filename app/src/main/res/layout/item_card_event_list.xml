@@ -44,14 +44,14 @@
 
             <TextView
                 android:id="@+id/tv_event_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/tv_event_name"
-                android:layout_toRightOf="@id/tv_event_details"
                 android:layout_marginLeft="3dp"
                 android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/tv_event_details"
                 android:text="10 Februari 2022"
-                android:textSize="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:textSize="16dp" />
 
             <Button
                 android:id="@+id/add_calender"
@@ -62,9 +62,9 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/blue"
                 android:text="@string/Add_to_calender"
-                android:textSize="10sp"
-                android:backgroundTint="@color/blue"/>
+                android:textSize="10sp" />
 
         </RelativeLayout>
 

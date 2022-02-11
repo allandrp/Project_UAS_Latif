@@ -26,7 +26,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/et_email"
+        android:id="@+id/et_email_register"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_below="@id/tv_login_account"
@@ -43,10 +43,10 @@
         android:textColor="@color/black" />
 
     <EditText
-        android:id="@+id/et_password"
+        android:id="@+id/et_password_register"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_below="@id/et_email"
+        android:layout_below="@id/et_email_register"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="20dp"
@@ -64,7 +64,7 @@
         android:id="@+id/et_confirm_password"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_below="@id/et_password"
+        android:layout_below="@id/et_password_register"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="20dp"
@@ -92,25 +92,6 @@
         android:textColor="@color/white"
         android:textSize="18dp"
         app:backgroundTint="@color/blue" />
-
-    <TextView
-        android:id="@+id/tv_or_signup_with"
-        android:layout_below="@id/button_sign_up"
-        android:layout_marginTop="40dp"
-        android:layout_centerHorizontal="true"
-        android:text="@string/Or_Sign_up_with"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <ImageView
-        android:id="@+id/img_google"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/tv_or_signup_with"
-        android:layout_marginTop="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_google" />
 
     <RelativeLayout
         android:id="@+id/relative_layout_sign_in"

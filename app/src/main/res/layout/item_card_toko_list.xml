@@ -65,10 +65,10 @@
 
                 <ImageView
                     android:id="@+id/img_1"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/img_spatula"
                     android:layout_width="90dp"
-                    android:layout_height="90dp"/>
+                    android:layout_height="90dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/img_spatula" />
 
             </RelativeLayout>
 
@@ -102,11 +102,11 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/img3"
-                    android:src="@drawable/img_wajan"
-                    android:layout_centerInParent="true"
+                    android:id="@+id/img_3"
                     android:layout_width="90dp"
-                    android:layout_height="90dp"/>
+                    android:layout_height="90dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/img_wajan" />
 
             </RelativeLayout>
 

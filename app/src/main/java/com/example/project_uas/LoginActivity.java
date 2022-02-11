@@ -1,12 +1,16 @@
 package com.example.project_uas;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -14,8 +18,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -27,6 +33,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth fbAuth;
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 9001;
+    EditText editTextEmail, editTextPassword;
+    TextView textViewSignUp;
+    Button buttonSignIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +43,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         imageGoogle = findViewById(R.id.img_google);
+        editTextEmail = findViewById(R.id.et_email);
+        editTextPassword = findViewById(R.id.et_password);
+        buttonSignIn = findViewById(R.id.button_sign_in);
+        textViewSignUp = findViewById(R.id.Tv_sign_up);
+        textViewSignUp.setOnClickListener(this);
+        buttonSignIn.setOnClickListener(this);
+
         fbAuth = FirebaseAuth.getInstance();
 
         if(fbAuth.getCurrentUser() != null){
@@ -43,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         imageGoogle.setOnClickListener(this);
 
-        // Configure Google Sign In
+        // konfigurasi client google
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("827736177418-g772mdo3g0lh4v026vbtne81i6toroa3.apps.googleusercontent.com")
                 .requestEmail()
@@ -53,10 +69,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+
     @Override
     public void onClick(View view) {
         if(view.getId() == imageGoogle.getId()){
             signIn();
+        }
+
+        if(view.getId() == buttonSignIn.getId()){
+            fbAuth.signInWithEmailAndPassword(editTextEmail.getText().toString(), editTextPassword.getText().toString()).addOnCompleteListener(
+                    new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                Intent intentHome = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(intentHome);
+                                finish();
+                            }
+                        }
+                    }
+            );
+
+        }
+
+        if(view.getId() == textViewSignUp.getId()){
+            Intent intentSignUp = new Intent (this, RegisterActivity.class);
+            startActivity(intentSignUp);
         }
     }
 

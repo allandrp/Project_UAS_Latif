@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -45,9 +46,33 @@ public class AdapterToko extends ArrayAdapter<Toko> implements View.OnClickListe
         TextView namaToko = listViewItem.findViewById(R.id.tv_toko_name);
         ImageButton tombolMap = listViewItem.findViewById(R.id.button_maps);
         RelativeLayout relativeLayoutDetail = listViewItem.findViewById(R.id.relative_layout_check_for_details);
+        ImageView img1, img2, img3;
+        img1 = listViewItem.findViewById(R.id.img_1);
+        img2 = listViewItem.findViewById(R.id.img_2);
+        img3 = listViewItem.findViewById(R.id.img_3);
 
         Toko toko = listToko.get(position);
         namaToko.setText(toko.getNama());
+
+        switch(toko.getJenisToko()){
+            case "elektronik":
+                img1.setImageResource(R.drawable.img_tv);
+                img2.setImageResource(R.drawable.img_mesin_cuci);
+                img3.setImageResource(R.drawable.img_blender);
+                break;
+
+            case "dapur":
+                img1.setImageResource(R.drawable.img_set_makan);
+                img2.setImageResource(R.drawable.img_spatula);
+                img3.setImageResource(R.drawable.img_wajan);
+                break;
+
+            case "mebel":
+                img1.setImageResource(R.drawable.img_tempat_tidur);
+                img2.setImageResource(R.drawable.img_lemari);
+                img3.setImageResource(R.drawable.img_meja);
+                break;
+        }
 
         tombolMap.setOnClickListener(new View.OnClickListener() {
             @Override

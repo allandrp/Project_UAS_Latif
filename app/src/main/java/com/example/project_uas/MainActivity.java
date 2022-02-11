@@ -4,27 +4,40 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.Manifest;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.project_uas.adapter.AdapterToko;
 import com.example.project_uas.model.Barang;
+import com.example.project_uas.model.Event;
 import com.example.project_uas.model.Toko;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +47,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     DrawerLayout drawerLayout;
@@ -48,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     AdapterToko adapterToko;
     ArrayList<Toko> listToko;
     ImageButton buttonCart;
+    Button buttonCheckEvent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +75,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_main);
         navigationView = findViewById(R.id.nav_view_main);
         toolbar = findViewById(R.id.Toolbar_menu);
+        buttonCheckEvent = findViewById(R.id.button_check_for_event);
         buttonCart = findViewById(R.id.button_cart);
+        buttonCheckEvent.setOnClickListener(this);
         buttonCart.setOnClickListener(this);
 
         fbAuth = FirebaseAuth.getInstance();
@@ -92,53 +111,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getDataToko();
     }
 
-    private void listViewSetup(){
+    private void listViewSetup() {
         listViewToko = findViewById(R.id.lv_toko_list);
         adapterToko = new AdapterToko(listToko, this);
         listViewToko.setAdapter(adapterToko);
     }
 
     private void getDataToko() {
-        //buat data
-        FirebaseDatabase fbDatabase = FirebaseDatabase.getInstance("https://project-uas-b188b-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        //buat ambil data
+        FirebaseDatabase fbDatabase = FirebaseDatabase.getInstance(getString(R.string.INSTANCE_FIREBASE));
         DatabaseReference fbReference = fbDatabase.getReference("toko");
 
-//        Toko toko1 = new Toko("Toko Elektronik", "elektronik", 47.5622, 13.6493);
-//        Toko toko2 = new Toko("Toko Dapur", "dapur", 21.4082, -78.5684);
-//        Toko toko3 = new Toko("Toko Mebel", "mebel", -13.1631, -72.545);
-//        fbReference.child(toko1.getNama()).setValue(toko1);
-//        fbReference.child(toko2.getNama()).setValue(toko2);
-//        fbReference.child(toko3.getNama()).setValue(toko3);
-//
-//        Barang barang1 = new Barang("lemari", 500000.0, R.drawable.img_lemari);
-//        Barang barang2 = new Barang("meja", 200000.0, R.drawable.img_meja);
-//        Barang barang3 = new Barang("tempat tidur", 700000.0, R.drawable.img_tempat_tidur);
-//        fbReference.child("Toko Mebel").child("barang").child(barang1.getNama()).setValue(barang1);
-//        fbReference.child("Toko Mebel").child("barang").child(barang2.getNama()).setValue(barang2);
-//        fbReference.child("Toko Mebel").child("barang").child(barang3.getNama()).setValue(barang3);
-//
-//        Barang barang4 = new Barang("blender", 150000.0, R.drawable.img_blender);
-//        Barang barang5 = new Barang("mesin cuci", 250000.0, R.drawable.img_mesin_cuci);
-//        Barang barang6 = new Barang("tv", 1000000.0, R.drawable.img_tv);
-//        fbReference.child("Toko Elektronik").child("barang").child(barang4.getNama()).setValue(barang4);
-//        fbReference.child("Toko Elektronik").child("barang").child(barang5.getNama()).setValue(barang5);
-//        fbReference.child("Toko Elektronik").child("barang").child(barang6.getNama()).setValue(barang6);
-//
-//        Barang barang7 = new Barang("set makan", 1500000.0, R.drawable.img_set_makan);
-//        Barang barang8 = new Barang("spatula", 40000.0, R.drawable.img_spatula);
-//        Barang barang9 = new Barang("wajan", 20000.0, R.drawable.img_wajan);
-//        fbReference.child("Toko Dapur").child("barang").child(barang7.getNama()).setValue(barang7);
-//        fbReference.child("Toko Dapur").child("barang").child(barang8.getNama()).setValue(barang8);
-//        fbReference.child("Toko Dapur").child("barang").child(barang9.getNama()).setValue(barang9);
+
 
         fbReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                if (snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         Toko tokoTemp = dataSnapshot.getValue(Toko.class);
                         listToko.add(tokoTemp);
-                        Log.d("TES_DATA_FIREBASE", "onDataChange: "+ tokoTemp.getNama());
+                        Log.d("TES_DATA_FIREBASE", "onDataChange: " + tokoTemp.getNama());
                     }
                     listViewSetup();
                 }
@@ -210,9 +203,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == buttonCart.getId()){
+        if (view.getId() == buttonCart.getId()) {
             Intent intentCart = new Intent(this, CartActivity.class);
             startActivity(intentCart);
         }
+
+        if (view.getId() == buttonCheckEvent.getId()) {
+            Intent intentEvent = new Intent(this, EventActivity.class);
+            startActivity(intentEvent);
+        }
+
     }
+
 }
